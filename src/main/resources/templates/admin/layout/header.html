@@ -23,29 +23,35 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/admin/">DashBoard</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/user">Users List</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Users
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/user">Users List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/user/create">Add User</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/user/create">Add User</a>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Products
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/admin/product">List Products</a></li>
+                    <li><a class="dropdown-item" href="/admin/product/create">Add New Product</a></li>
+                  </ul>
                 </li>
-                <!--        <li class="nav-item dropdown">-->
-                <!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                <!--            Dropdown-->
-                <!--          </a>-->
-                <!--          <ul class="dropdown-menu">-->
-                <!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-                <!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                <!--            <li><hr class="dropdown-divider"></li>-->
-                <!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                <!--          </ul>-->
-                <!--        </li>-->
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">...</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" name="keyword" th:value="${keyword}" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="d-flex" style="margin-left: 10px;">

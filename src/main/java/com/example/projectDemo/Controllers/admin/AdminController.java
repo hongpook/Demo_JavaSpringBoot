@@ -1,11 +1,8 @@
 package com.example.projectDemo.Controllers.admin;
 
 import com.example.projectDemo.Entity.User;
-import com.example.projectDemo.Repositories.UserRepository;
 import com.example.projectDemo.Services.UserService;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +34,7 @@ public class AdminController {
 
         if (keyword != null && !keyword.trim().isEmpty()) {
             users = this.userService.searchUser(keyword);
+            model.addAttribute("keyword", keyword);
         } else {
             users = this.userService.getAllUsers();
         }
@@ -101,5 +99,9 @@ public class AdminController {
         this.userService.deleteUserById(id);
         return "redirect:/admin/user";
     }
+
+
+
+    
 
 }
