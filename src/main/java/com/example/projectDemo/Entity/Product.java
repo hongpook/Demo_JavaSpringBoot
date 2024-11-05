@@ -24,11 +24,51 @@ public class Product {
     @Column(name = "color")
     private String color;
 
-    public Product(String productName, String description, String price, String color) {
+    @Column(name = "categories")
+    private String categories;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    @Column(name = "state")
+    private boolean state;
+
+    public Product(String productName, String description, String price, String color, int quantity, boolean state, String categories) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.color = color;
+        this.quantity = quantity;
+        this.state = state;
+        this.categories = categories;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     public Product(){}

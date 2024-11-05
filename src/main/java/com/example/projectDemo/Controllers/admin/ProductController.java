@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
-import java.util.Optional;
 
 
 @RequestMapping("/api/")
@@ -33,40 +32,39 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/products/search/{keyword}")
+    public List<Product> search(@RequestParam String keyword){
+        return productService.searchProduct(keyword);
+    }
+
+    @GetMapping("/products-false")
+    public List<Product> getAllProductsFalse(Model model){
+        logger.info("Tất cả sản phẩm có trạng thái false!!!");
+        return productService.getAllProductsfalse();
+    }
+
+
     @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable Long id){
         return productService.getProductById(id);
     }
 
     @PostMapping("/products")
-    public Product createUser(@RequestBody Product product) {
-        return productRepository.save(product);
+    public Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
     }
 
 
     @PutMapping("/products/{id}")
-    public Product updateUser(@PathVariable Long id, @RequestBody Product product){
-
-        return productRepository.findById(id)
-                .map(prd -> {
-                    prd.setPrice(product.getPrice());
-                    prd.setDescription(product.getDescription());
-                    prd.setProductName(product.getProductName());
-                    prd.setColor(product.getColor());
-
-                    return productRepository.save(prd);
-                })
-                .orElseGet(() -> {
-                    product.setId(id);
-                    return productRepository.save(product);
-
-                });
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product){
+        return productService.updateProduct(id, product);
     }
 
     @DeleteMapping("/products/{id}")
-    public void deleteProduct(@PathVariable Long id){
-        productRepository.deleteById(id);
+    public Product deleteProduct(@PathVariable Long id){
+
         System.out.println("Xóa thành công");
+        return productService.deleteProduct(id);
     }
 
 }
