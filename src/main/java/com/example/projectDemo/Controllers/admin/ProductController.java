@@ -6,7 +6,8 @@ import com.example.projectDemo.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class ProductController {
     @Autowired
     private final ProductService productService;
     private final ProductRepository productRepository;
+    private static final Logger logger = LogManager.getLogger(ProductController.class);
 
     public ProductController(ProductService productService, ProductRepository productRepository) {
         this.productService = productService;
@@ -27,6 +29,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAllProducts(Model model){
+        logger.info("Tất cả sản phẩm!!!");
         return productService.getAllProducts();
     }
 
