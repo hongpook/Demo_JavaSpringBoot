@@ -2,7 +2,6 @@ package com.example.projectDemo.Services;
 
 import com.example.projectDemo.Entity.Product;
 import com.example.projectDemo.Exception.NoSuchProductExistsException;
-import com.example.projectDemo.Exception.ProductAlreadyExistsException;
 import com.example.projectDemo.Repositories.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,11 +69,13 @@ public class ProductService{
 
     public Product getProductById(Long id) {
         logger.info("Sản phẩm có id= " + id);
+        var productExists = productRepository.findById(id).orElseThrow(() -> new NoSuchProductExistsException("Sản phẩm không tồn tại!!"));
         return productRepository.findProductById(id);
     }
 
 
     public Product deleteProduct(Long id){
+        productRepository.findById(id).orElseThrow(() -> new NoSuchProductExistsException("Sản phẩm không tồn tại!!"));
         return productRepository.deleteProduct(id);
     }
 

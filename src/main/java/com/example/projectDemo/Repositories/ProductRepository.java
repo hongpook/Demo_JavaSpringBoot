@@ -24,9 +24,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findProductById (long id);
 
 
-    @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE ?1"
-            + " OR LOWER(p.categories) LIKE ?1"
-            + " OR LOWER(p.color) LIKE ?1")
+    @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE ?1 and p.state = true"
+            + " OR LOWER(p.categories) LIKE ?1 and p.state = true "
+            + " OR LOWER(p.color) LIKE ?1 and p.state = true")
     List<Product> searchProduct (String keyword);
 
 

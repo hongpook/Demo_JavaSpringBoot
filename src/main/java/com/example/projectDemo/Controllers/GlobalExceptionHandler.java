@@ -1,31 +1,28 @@
 package com.example.projectDemo.Controllers;
 
-import com.example.projectDemo.Entity.ErrorResponse;
 import com.example.projectDemo.Exception.NoSuchProductExistsException;
 import com.example.projectDemo.Exception.ProductAlreadyExistsException;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = NoSuchProductExistsException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public @ResponseBody ErrorResponse handleException( NoSuchProductExistsException ex) {
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+    @ExceptionHandler(NoSuchProductExistsException.class)
+    public ResponseEntity<Object> handleException(NoSuchProductExistsException exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(exception.getMessage());
     }
 
-
-    @ExceptionHandler(value = ProductAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleProductAlreadyExistsException(ProductAlreadyExistsException ex) {
-        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<Object> handleProductAlreadyExistsException(ProductAlreadyExistsException exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(exception.getMessage());
     }
 
 //    @ExceptionHandler(IndexOutOfBoundsException.class)

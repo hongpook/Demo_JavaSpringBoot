@@ -1,9 +1,11 @@
 package com.example.projectDemo.Controllers.admin;
 
 import com.example.projectDemo.Entity.Product;
+import com.example.projectDemo.Entity.User;
 import com.example.projectDemo.Repositories.ProductRepository;
 import com.example.projectDemo.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.LogManager;
@@ -27,15 +29,18 @@ public class ProductController {
 
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(Model model){
+    public List<Product> getAllProducts(Model model, @Param("keyword") String keyword){
+
+        List<Product> products;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            logger.info("Tìm kiếm sản phẩm: " + keyword);
+            return productService.searchProduct(keyword);
+        }
         logger.info("Tất cả sản phẩm!!!");
         return productService.getAllProducts();
     }
 
-    @GetMapping("/products/search/{keyword}")
-    public List<Product> search(@RequestParam String keyword){
-        return productService.searchProduct(keyword);
-    }
 
     @GetMapping("/products-false")
     public List<Product> getAllProductsFalse(Model model){
