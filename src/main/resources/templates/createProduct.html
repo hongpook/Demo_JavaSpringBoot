@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Thêm mới sản phẩm</h1>
+
+    <form th:action="@{/prd/create}" method="post" modelAttribute="products">
+        <div class="mb-3 row">
+            <label for="productName" class="col-sm-2 col-form-label">Tên sản phẩm:</label>
+            <div class="col-sm-10">
+                <input type="text" id="productName" name="productName" class="form-control" required/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="description" class="col-sm-2 col-form-label">Mô tả:</label>
+            <div class="col-sm-10">
+                <textarea id="description" name="description" class="form-control" required></textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-2 col-form-label">Giá:</label>
+            <div class="col-sm-10">
+                <input type="number" id="price" name="price" class="form-control" required/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="color" class="col-sm-2 col-form-label">Màu sắc:</label>
+            <div class="col-sm-10">
+                <input type="text" id="color" name="color" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="categories" class="col-sm-2 col-form-label">Loại sản phẩm:</label>
+            <div class="col-sm-10">
+                <input type="text" id="categories" name="categories" class="form-control"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="quantity" class="col-sm-2 col-form-label">Số lượng:</label>
+            <div class="col-sm-10">
+                <input type="number" id="quantity" name="quantity" class="form-control"/>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Lưu</button>
+    </form>
+</div>
+
+</body>
+</html>

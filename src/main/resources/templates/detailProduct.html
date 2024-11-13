@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+        <th>id</th>
+        <th>Product name</th>
+        <th>Color</th>
+        <th>description</th>
+        <th>price</th>
+        <th>categories</th>
+        <th>quantity</th>
+        <th>Actions</th>
+        </thead>
+        <tr >
+
+            <td th:text="${products.id}"> Replaceable text </td >
+            <td th:text="${products.productName}"> Replaceable text </td >
+            <td th:text="${products.color}"> Replaceable text </td >
+            <td th:text="${products.description}"> Replaceable text </td >
+            <td th:text="${products.price}"> Replaceable text </td >
+            <td th:text="${products.categories}"> Replaceable text </td >
+            <td th:text="${products.quantity}"> Replaceable text </td >
+        </tr>
+    </table>
+</div>
+</body>
+</html>

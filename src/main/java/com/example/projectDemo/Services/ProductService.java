@@ -36,6 +36,9 @@ public class ProductService{
 
 
     public List<Product> searchProduct(String keyword) {
+        if( keyword == null || keyword.isEmpty()){
+            logger.info("Không có sản phẩm nào được tìm!");
+        }
         return productRepository.searchProduct(keyword);
     }
 
@@ -74,8 +77,9 @@ public class ProductService{
     }
 
 
-    public Product deleteProduct(Long id){
+    public int deleteProduct(Long id){
         productRepository.findById(id).orElseThrow(() -> new NoSuchProductExistsException("Sản phẩm không tồn tại!!"));
+
         return productRepository.deleteProduct(id);
     }
 

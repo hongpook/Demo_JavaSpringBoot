@@ -1,7 +1,6 @@
 package com.example.projectDemo.Controllers.admin;
 
 import com.example.projectDemo.Entity.Product;
-import com.example.projectDemo.Entity.User;
 import com.example.projectDemo.Repositories.ProductRepository;
 import com.example.projectDemo.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
 
-
-@RequestMapping("/api/")
 @RestController
+@RequestMapping(path = "/api/",
+        produces = "application/json")
+@CrossOrigin(origins = "*")
+
 public class ProductController {
 
     @Autowired
@@ -66,9 +67,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{id}")
-    public Product deleteProduct(@PathVariable Long id){
+    public int deleteProduct(@PathVariable Long id){
 
-        System.out.println("Xóa thành công");
+        logger.info("Xóa thành công");
         return productService.deleteProduct(id);
     }
 
