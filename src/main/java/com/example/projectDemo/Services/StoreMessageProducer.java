@@ -13,12 +13,6 @@ public class StoreMessageProducer {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    /**
-     * Convert and publish the message to the queue
-     *
-     * @param destination
-     * @param store
-     */
     public void sendTo(String destination, Store store) {
         jmsTemplate.convertAndSend(destination, store);
         log.info("Producer> Message Sent");

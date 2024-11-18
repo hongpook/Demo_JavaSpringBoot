@@ -1,0 +1,33 @@
+package com.example.projectDemo.ActiveMQ;
+
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RequestMapping("/activemq")
+@RestController
+public class MessageController {
+
+    private final MessageProducer messageProducer;
+
+
+    public MessageController(MessageProducer messageProducer) {
+        this.messageProducer = messageProducer;
+    }
+
+    @PostMapping("/publish-message")
+    public ResponseEntity<String> publishMessage(@RequestBody String messageText){
+        Message message = new Message(messageText);
+        try{
+            messageProducer.sendMessage(message);
+            return new ResponseEntity<>("Message publish successfully!", HttpStatus.OK) ;
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error publish message!" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}
