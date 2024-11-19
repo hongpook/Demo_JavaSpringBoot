@@ -11,6 +11,6 @@ public class Message implements Serializable {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 }
