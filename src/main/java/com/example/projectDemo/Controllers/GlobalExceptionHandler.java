@@ -24,10 +24,4 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exception.getMessage());
     }
-
-//    @ExceptionHandler(IndexOutOfBoundsException.class)
-//    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-//    public ErrorResponse todoException(Exception ex, WebRequest request) {
-//        return new ErrorResponse(10100, "Đối tượng không tồn tại");
-//    }
 }

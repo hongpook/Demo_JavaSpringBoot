@@ -1,7 +1,6 @@
 package com.example.projectDemo.Controllers.admin;
 
 import com.example.projectDemo.Entity.Product;
-import com.example.projectDemo.Repositories.ProductRepository;
 import com.example.projectDemo.Services.ApiServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

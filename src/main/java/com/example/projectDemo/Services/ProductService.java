@@ -19,9 +19,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Slf4j
 public class ProductService{
     @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public Product getProductById(Long id) {
+        logger.info("Sản phẩm có id= " + id);
+        var productExists = productRepository.findById(id).orElseThrow(()
+                -> new NoSuchProductExistsException("Sản phẩm không tồn tại!!"));
+        return productRepository.findProductById(id);
+    }
 
 
     public List<Product> getAllProducts() {
@@ -70,11 +80,7 @@ public class ProductService{
                 });
     }
 
-    public Product getProductById(Long id) {
-        logger.info("Sản phẩm có id= " + id);
-        var productExists = productRepository.findById(id).orElseThrow(() -> new NoSuchProductExistsException("Sản phẩm không tồn tại!!"));
-        return productRepository.findProductById(id);
-    }
+
 
 
     public int deleteProduct(Long id){

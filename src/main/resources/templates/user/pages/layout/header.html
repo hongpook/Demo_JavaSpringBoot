@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-lg" th:fragment="header" style="background-color: #e3f2fd;">
     <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#" style="width: 20%"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Logo-Sacombank-new.png" style="width: 70%;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,12 +22,12 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">About</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
+<!--                </li>-->
             </ul>
             <div sec:authorize="isAuthenticated()">
                 <a class="btn btn-danger" href="/logout">Sign Out</a>

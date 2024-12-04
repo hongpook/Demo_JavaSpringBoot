@@ -1,16 +1,8 @@
 package com.example.projectDemo.Services;
 
 import com.example.projectDemo.Entity.Product;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +25,6 @@ public class RestTemplateProvider {
         ResponseEntity<Product> res = restTemplate.postForEntity(productUrl, product, Product.class);
         return res.getBody();
     }
-
-
-
 }
+
+

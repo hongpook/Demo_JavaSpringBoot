@@ -43,6 +43,9 @@ public class Product {
         this.categories = categories;
     }
 
+    public Product(int i, String productName, String description, int i1, String color, String categories, int i2, String aTrue) {
+    }
+
     public String getCategories() {
         return categories;
     }

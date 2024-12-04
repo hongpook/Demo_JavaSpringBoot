@@ -42,42 +42,16 @@ public class WebSecurityConfig {
         return new RestTemplate();
     }
 
-//    @Bean
-//    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        return http
-
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers("/", "/register", "/login", "/user/**")
-//                        .permitAll()
-//                        .requestMatchers("/admin/**").hasRole("admin")
-//                        .anyRequest().authenticated())
-//                .formLogin(formLogin -> formLogin
-//                        .loginPage("/login")
-//                        .failureUrl("/login?error")
-//                        .permitAll())
-//                .logout((logout) -> logout
-//                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                        .logoutSuccessUrl("/")
-//                        .invalidateHttpSession(true)
-//                        .clearAuthentication(true)
-//                        .permitAll()
-//                )
-//                .rememberMe(rem -> rem
-//                        .rememberMeParameter("remember-me")
-//                        .tokenValiditySeconds(60 * 60 * 60 * 24 * 7)
-//
-//                )
-//
-//                .build();
-//    }
-
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**")
-                        .permitAll())
+                        .requestMatchers("/", "/register", "/login", "/api/**",
+                                "/user/**", "/activemq/**", "/topic/**")
+                        .permitAll()
+                        .requestMatchers("/admin/**").hasRole("admin")
+                        .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
@@ -97,5 +71,32 @@ public class WebSecurityConfig {
 
                 .build();
     }
+
+//    @Bean
+//    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .csrf().disable()
+//                .authorizeHttpRequests(authorize -> authorize
+//                        .requestMatchers("/**")
+//                        .permitAll())
+//                .formLogin(formLogin -> formLogin
+//                        .loginPage("/login")
+//                        .failureUrl("/login?error")
+//                        .permitAll())
+//                .logout((logout) -> logout
+//                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                        .logoutSuccessUrl("/")
+//                        .invalidateHttpSession(true)
+//                        .clearAuthentication(true)
+//                        .permitAll()
+//                )
+//                .rememberMe(rem -> rem
+//                        .rememberMeParameter("remember-me")
+//                        .tokenValiditySeconds(60 * 60 * 60 * 24 * 7)
+//
+//                )
+//
+//                .build();
+//    }
 
 }

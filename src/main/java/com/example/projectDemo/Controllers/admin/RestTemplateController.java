@@ -2,8 +2,6 @@ package com.example.projectDemo.Controllers.admin;
 
 import com.example.projectDemo.Entity.Product;
 import com.example.projectDemo.Services.RestTemplateProvider;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
